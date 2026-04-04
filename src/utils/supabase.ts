@@ -1,5 +1,5 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -8,7 +8,7 @@ const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
   throw new Error(
-    "Faltan las variables de entorno SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY en el archivo .env",
+    "The SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY environment variables are missing from the .env file.",
   );
 }
 
