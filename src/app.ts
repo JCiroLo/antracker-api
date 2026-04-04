@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get("/health", (_req: Request, res: Response) => {
-  res.json({ status: "ok", timestamp: new Date().toISOString() });
+  res.json({ status: "ok", message: "I'm alive! 😀", timestamp: new Date().toISOString() });
 });
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
