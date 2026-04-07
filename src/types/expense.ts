@@ -11,7 +11,6 @@ export type ExpenseTemplate = {
   amount: number;
   category_id: string | null;
 
-  // New time scope fields
   is_single_payment: boolean;
   frequency_value: number | null;
   frequency_unit: FrequencyUnit | null;
@@ -19,7 +18,6 @@ export type ExpenseTemplate = {
   next_due_date: string | null;
   times: number;
 
-  // Deprecated fields (keep them optional for the migration period)
   type?: "monthly" | "annual" | "one-time";
   due_day?: number | null;
   due_month?: number | null;
@@ -37,12 +35,10 @@ export type ExpenseRecord = {
   template_id: string;
   user_id: string;
 
-  // New fields
   amount: number;
   title: string;
   paid_date: string;
 
-  // Deprecated fields
   paid_at_month?: number;
   paid_at_year?: number;
 };
