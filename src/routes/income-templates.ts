@@ -1,44 +1,49 @@
 import { Router, type Router as ExpressRouter } from "express";
-import { createCrudController } from "../controllers/crud-controller";
+import {
+  getAllIncomeTemplates,
+  getIncomeTemplateById,
+  createIncomeTemplate,
+  updateIncomeTemplate,
+  deleteIncomeTemplate,
+} from "@controllers/income-template-controller";
 
 const router: ExpressRouter = Router();
-const ctrl = createCrudController("income_templates");
 
 /**
- * @route   GET /api/income_templates
+ * @route   GET  /income_templates
  * @desc    Get all income templates
  * @returns { data: IncomeTemplate[] }
  */
-router.get("/", ctrl.getAll);
+router.get("/", getAllIncomeTemplates);
 
 /**
- * @route   GET /api/income_templates/:id
+ * @route   GET  /income_templates/:id
  * @desc    Get an income template by ID
  * @returns { data: IncomeTemplate }
  */
-router.get("/:id", ctrl.getById);
+router.get("/:id", getIncomeTemplateById);
 
 /**
- * @route   POST /api/income_templates
+ * @route   POST  /income_templates
  * @desc    Create a new income template
  * @body    { name, source, amount, description?, is_recurring }
  * @returns { data: IncomeTemplate }
  */
-router.post("/", ctrl.create);
+router.post("/", createIncomeTemplate);
 
 /**
- * @route   PUT /api/income_templates/:id
+ * @route   PUT  /income_templates/:id
  * @desc    Update an existing income template
  * @body    Partial fields of IncomeTemplate
  * @returns { data: IncomeTemplate }
  */
-router.put("/:id", ctrl.update);
+router.put("/:id", updateIncomeTemplate);
 
 /**
- * @route   DELETE /api/income_templates/:id
+ * @route   DELETE  /income_templates/:id
  * @desc    Delete an income template
  * @returns { message: string }
  */
-router.delete("/:id", ctrl.remove);
+router.delete("/:id", deleteIncomeTemplate);
 
 export default router;
