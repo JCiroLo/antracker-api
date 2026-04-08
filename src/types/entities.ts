@@ -6,11 +6,8 @@ export interface ExpenseCategory {
   created_at?: string;
 }
 
-export type CreateExpenseCategoryDto = Omit<
-  ExpenseCategory,
-  "id" | "created_at"
->;
-export type UpdateExpenseCategoryDto = Partial<CreateExpenseCategoryDto>;
+export type NewExpenseCategory = Omit<ExpenseCategory, "id" | "created_at">;
+export type ExpenseCategoryUpdate = Partial<NewExpenseCategory>;
 
 export interface ExpenseTemplate {
   id: string;
@@ -30,11 +27,8 @@ export interface ExpenseTemplate {
   next_due_date?: string;
 }
 
-export type CreateExpenseTemplateDto = Omit<
-  ExpenseTemplate,
-  "id" | "created_at"
->;
-export type UpdateExpenseTemplateDto = Partial<CreateExpenseTemplateDto>;
+export type NewExpenseTemplate = Omit<ExpenseTemplate, "id" | "created_at">;
+export type ExpenseTemplateUpdate = Partial<NewExpenseTemplate>;
 
 export interface ExpenseRecord {
   id: string;
@@ -50,8 +44,8 @@ export interface ExpenseRecord {
   paid_date?: string;
 }
 
-export type CreateExpenseRecordDto = Omit<ExpenseRecord, "id" | "created_at">;
-export type UpdateExpenseRecordDto = Partial<CreateExpenseRecordDto>;
+export type NewExpenseRecord = Omit<ExpenseRecord, "id" | "created_at">;
+export type ExpenseRecordUpdate = Partial<NewExpenseRecord>;
 
 export interface IncomeTemplate {
   id: string;
@@ -71,8 +65,8 @@ export interface IncomeTemplate {
   next_due_date?: string;
 }
 
-export type CreateIncomeTemplateDto = Omit<IncomeTemplate, "id" | "created_at">;
-export type UpdateIncomeTemplateDto = Partial<CreateIncomeTemplateDto>;
+export type NewIncomeTemplate = Omit<IncomeTemplate, "id" | "created_at">;
+export type IncomeTemplateUpdate = Partial<NewIncomeTemplate>;
 
 export interface IncomeRecord {
   id: string;
@@ -88,8 +82,8 @@ export interface IncomeRecord {
   paid_date?: string;
 }
 
-export type CreateIncomeRecordDto = Omit<IncomeRecord, "id" | "created_at">;
-export type UpdateIncomeRecordDto = Partial<CreateIncomeRecordDto>;
+export type NewIncomeRecord = Omit<IncomeRecord, "id" | "created_at">;
+export type IncomeRecordUpdate = Partial<NewIncomeRecord>;
 
 export interface User {
   id: string;
@@ -97,8 +91,8 @@ export interface User {
   created_at?: string;
 }
 
-export type CreateUserDto = Omit<User, "created_at">;
-export type UpdateUserDto = Partial<CreateUserDto>;
+export type NewUser = Omit<User, "created_at">;
+export type UserUpdate = Partial<NewUser>;
 
 export interface ApiResponse<T> {
   data?: T;
