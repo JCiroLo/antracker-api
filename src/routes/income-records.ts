@@ -1,44 +1,49 @@
 import { Router, type Router as ExpressRouter } from "express";
-import { createCrudController } from "../controllers/crud-controller";
+import {
+  getAllIncomeRecords,
+  getIncomeRecordById,
+  createIncomeRecord,
+  updateIncomeRecord,
+  deleteIncomeRecord,
+} from "@controllers/income-record-controller";
 
 const router: ExpressRouter = Router();
-const ctrl = createCrudController("income_records");
 
 /**
- * @route   GET /api/income_records
+ * @route   GET  /income_records
  * @desc    Get all income records
  * @returns { data: IncomeRecord[] }
  */
-router.get("/", ctrl.getAll);
+router.get("/", getAllIncomeRecords);
 
 /**
- * @route   GET /api/income_records/:id
+ * @route   GET  /income_records/:id
  * @desc    Get an income record by ID
  * @returns { data: IncomeRecord }
  */
-router.get("/:id", ctrl.getById);
+router.get("/:id", getIncomeRecordById);
 
 /**
- * @route   POST /api/income_records
+ * @route   POST  /income_records
  * @desc    Create a new income record
  * @body    { template_id?, user_id, name, source, amount, description?, date }
  * @returns { data: IncomeRecord }
  */
-router.post("/", ctrl.create);
+router.post("/", createIncomeRecord);
 
 /**
- * @route   PUT /api/income_records/:id
+ * @route   PUT  /income_records/:id
  * @desc    Update an existing income record
  * @body    Partial fields of IncomeRecord
  * @returns { data: IncomeRecord }
  */
-router.put("/:id", ctrl.update);
+router.put("/:id", updateIncomeRecord);
 
 /**
- * @route   DELETE /api/income_records/:id
+ * @route   DELETE  /income_records/:id
  * @desc    Delete an income record
  * @returns { message: string }
  */
-router.delete("/:id", ctrl.remove);
+router.delete("/:id", deleteIncomeRecord);
 
 export default router;
