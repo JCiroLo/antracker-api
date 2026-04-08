@@ -1,44 +1,49 @@
 import { Router, type Router as ExpressRouter } from "express";
-import { createCrudController } from "../controllers/crud-controller";
+import {
+  getAllIncomeCategories,
+  getIncomeCategoryById,
+  createIncomeCategory,
+  updateIncomeCategory,
+  deleteIncomeCategory,
+} from "@controllers/income-category-controller";
 
 const router: ExpressRouter = Router();
-const ctrl = createCrudController("expense_categories");
 
 /**
- * @route   GET /api/income_categories
+ * @route   GET  /income_categories
  * @desc    Get all income categories
- * @returns { data: ExpenseCategory[] }
+ * @returns { data: IncomeCategory[] }
  */
-router.get("/", ctrl.getAll);
+router.get("/", getAllIncomeCategories);
 
 /**
- * @route   GET /api/income_categories/:id
+ * @route   GET  /income_categories/:id
  * @desc    Get an income category by ID
- * @returns { data: ExpenseCategory }
+ * @returns { data: IncomeCategory }
  */
-router.get("/:id", ctrl.getById);
+router.get("/:id", getIncomeCategoryById);
 
 /**
- * @route   POST /api/income_categories
+ * @route   POST  /income_categories
  * @desc    Create a new income category
  * @body    { name, color, user_id }
- * @returns { data: ExpenseCategory }
+ * @returns { data: IncomeCategory }
  */
-router.post("/", ctrl.create);
+router.post("/", createIncomeCategory);
 
 /**
- * @route   PUT /api/income_categories/:id
+ * @route   PUT  /income_categories/:id
  * @desc    Update an existing income category
- * @body    Partial fields of ExpenseCategory
- * @returns { data: ExpenseCategory }
+ * @body    Partial fields of IncomeCategory
+ * @returns { data: IncomeCategory }
  */
-router.put("/:id", ctrl.update);
+router.put("/:id", updateIncomeCategory);
 
 /**
- * @route   DELETE /api/income_categories/:id
+ * @route   DELETE  /income_categories/:id
  * @desc    Delete an income category
  * @returns { message: string }
  */
-router.delete("/:id", ctrl.remove);
+router.delete("/:id", deleteIncomeCategory);
 
 export default router;
