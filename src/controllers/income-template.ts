@@ -2,15 +2,14 @@ import { Request, Response } from "express";
 import supabase from "@lib/supabase";
 import { ApiResponse } from "@/types/entities";
 
+const table = supabase.from("income_templates");
+
 /**
  * Get all income templates
  * @route GET  /income_templates
  */
-export const getAllIncomeTemplates = async (
-  _req: Request,
-  res: Response,
-): Promise<void> => {
-  const { data, error } = await supabase.from("income_templates").select("*");
+export const getAllIncomeTemplates = async (_req: Request, res: Response): Promise<void> => {
+  const { data, error } = await table.select("*");
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -26,17 +25,10 @@ export const getAllIncomeTemplates = async (
  * Get an income template by ID
  * @route GET  /income_templates/:id
  */
-export const getIncomeTemplateById = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const getIncomeTemplateById = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
-  const { data, error } = await supabase
-    .from("income_templates")
-    .select("*")
-    .eq("id", id)
-    .single();
+  const { data, error } = await table.select("*").eq("id", id).single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -52,17 +44,10 @@ export const getIncomeTemplateById = async (
  * Create a new income template
  * @route POST  /income_templates
  */
-export const createIncomeTemplate = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const createIncomeTemplate = async (req: Request, res: Response): Promise<void> => {
   const body = req.body;
 
-  const { data, error } = await supabase
-    .from("income_templates")
-    .insert(body)
-    .select()
-    .single();
+  const { data, error } = await table.insert(body).select().single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -78,19 +63,11 @@ export const createIncomeTemplate = async (
  * Update an existing income template
  * @route PUT  /income_templates/:id
  */
-export const updateIncomeTemplate = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const updateIncomeTemplate = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   const body = req.body;
 
-  const { data, error } = await supabase
-    .from("income_templates")
-    .update(body)
-    .eq("id", id)
-    .select()
-    .single();
+  const { data, error } = await table.update(body).eq("id", id).select().single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -106,16 +83,10 @@ export const updateIncomeTemplate = async (
  * Delete an income template
  * @route DELETE  /income_templates/:id
  */
-export const deleteIncomeTemplate = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const deleteIncomeTemplate = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
-  const { error } = await supabase
-    .from("income_templates")
-    .delete()
-    .eq("id", id);
+  const { error } = await table.delete().eq("id", id);
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -124,7 +95,7 @@ export const deleteIncomeTemplate = async (
   }
 
   const response: ApiResponse<null> = {
-    message: `Registro ${id} eliminado correctamente`,
+    message: `Record ${id} was successfully removed`,
   };
   res.status(200).json(response);
 };

@@ -2,15 +2,14 @@ import { Request, Response } from "express";
 import supabase from "@lib/supabase";
 import { ApiResponse } from "@/types/entities";
 
+const table = supabase.from("income_categories");
+
 /**
  * Get all income categories
  * @route GET  /income_categories
  */
-export const getAllIncomeCategories = async (
-  _req: Request,
-  res: Response,
-): Promise<void> => {
-  const { data, error } = await supabase.from("income_categories").select("*");
+export const getAllIncomeCategories = async (_req: Request, res: Response): Promise<void> => {
+  const { data, error } = await table.select("*");
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -26,17 +25,10 @@ export const getAllIncomeCategories = async (
  * Get an income category by ID
  * @route GET  /income_categories/:id
  */
-export const getIncomeCategoryById = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const getIncomeCategoryById = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
-  const { data, error } = await supabase
-    .from("income_categories")
-    .select("*")
-    .eq("id", id)
-    .single();
+  const { data, error } = await table.select("*").eq("id", id).single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -52,17 +44,10 @@ export const getIncomeCategoryById = async (
  * Create a new income category
  * @route POST  /income_categories
  */
-export const createIncomeCategory = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const createIncomeCategory = async (req: Request, res: Response): Promise<void> => {
   const body = req.body;
 
-  const { data, error } = await supabase
-    .from("income_categories")
-    .insert(body)
-    .select()
-    .single();
+  const { data, error } = await table.insert(body).select().single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -78,19 +63,11 @@ export const createIncomeCategory = async (
  * Update an existing income category
  * @route PUT  /income_categories/:id
  */
-export const updateIncomeCategory = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const updateIncomeCategory = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   const body = req.body;
 
-  const { data, error } = await supabase
-    .from("income_categories")
-    .update(body)
-    .eq("id", id)
-    .select()
-    .single();
+  const { data, error } = await table.update(body).eq("id", id).select().single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -106,16 +83,10 @@ export const updateIncomeCategory = async (
  * Delete an income category
  * @route DELETE  /income_categories/:id
  */
-export const deleteIncomeCategory = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const deleteIncomeCategory = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
-  const { error } = await supabase
-    .from("income_categories")
-    .delete()
-    .eq("id", id);
+  const { error } = await table.delete().eq("id", id);
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -124,7 +95,7 @@ export const deleteIncomeCategory = async (
   }
 
   const response: ApiResponse<null> = {
-    message: `Registro ${id} eliminado correctamente`,
+    message: `Record ${id} was successfully removed`,
   };
   res.status(200).json(response);
 };

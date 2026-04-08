@@ -1,11 +1,5 @@
 import { Router, type Router as ExpressRouter } from "express";
-import {
-  getAllExpenseCategories,
-  getExpenseCategoryById,
-  createExpenseCategory,
-  updateExpenseCategory,
-  deleteExpenseCategory,
-} from "@controllers/expense-category-controller";
+import * as Controller from "@controllers/expense-categories";
 
 const router: ExpressRouter = Router();
 
@@ -14,14 +8,14 @@ const router: ExpressRouter = Router();
  * @desc    Get all expense categories
  * @returns { data: ExpenseCategory[] }
  */
-router.get("/", getAllExpenseCategories);
+router.get("/", Controller.getAllExpenseCategories);
 
 /**
  * @route   GET  /expense_categories/:id
  * @desc    Get an expense category by ID
  * @returns { data: ExpenseCategory }
  */
-router.get("/:id", getExpenseCategoryById);
+router.get("/:id", Controller.getExpenseCategoryById);
 
 /**
  * @route   POST  /expense_categories
@@ -29,7 +23,7 @@ router.get("/:id", getExpenseCategoryById);
  * @body    { name, color, user_id }
  * @returns { data: ExpenseCategory }
  */
-router.post("/", createExpenseCategory);
+router.post("/", Controller.createExpenseCategory);
 
 /**
  * @route   PUT  /expense_categories/:id
@@ -37,13 +31,13 @@ router.post("/", createExpenseCategory);
  * @body    Partial fields of ExpenseCategory
  * @returns { data: ExpenseCategory }
  */
-router.put("/:id", updateExpenseCategory);
+router.put("/:id", Controller.updateExpenseCategory);
 
 /**
  * @route   DELETE  /expense_categories/:id
  * @desc    Delete an expense category
  * @returns { message: string }
  */
-router.delete("/:id", deleteExpenseCategory);
+router.delete("/:id", Controller.deleteExpenseCategory);
 
 export default router;

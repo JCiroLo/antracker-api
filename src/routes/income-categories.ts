@@ -1,11 +1,5 @@
 import { Router, type Router as ExpressRouter } from "express";
-import {
-  getAllIncomeCategories,
-  getIncomeCategoryById,
-  createIncomeCategory,
-  updateIncomeCategory,
-  deleteIncomeCategory,
-} from "@controllers/income-category-controller";
+import * as Controller from "@controllers/income-categories";
 
 const router: ExpressRouter = Router();
 
@@ -14,14 +8,14 @@ const router: ExpressRouter = Router();
  * @desc    Get all income categories
  * @returns { data: IncomeCategory[] }
  */
-router.get("/", getAllIncomeCategories);
+router.get("/", Controller.getAllIncomeCategories);
 
 /**
  * @route   GET  /income_categories/:id
  * @desc    Get an income category by ID
  * @returns { data: IncomeCategory }
  */
-router.get("/:id", getIncomeCategoryById);
+router.get("/:id", Controller.getIncomeCategoryById);
 
 /**
  * @route   POST  /income_categories
@@ -29,7 +23,7 @@ router.get("/:id", getIncomeCategoryById);
  * @body    { name, color, user_id }
  * @returns { data: IncomeCategory }
  */
-router.post("/", createIncomeCategory);
+router.post("/", Controller.createIncomeCategory);
 
 /**
  * @route   PUT  /income_categories/:id
@@ -37,13 +31,13 @@ router.post("/", createIncomeCategory);
  * @body    Partial fields of IncomeCategory
  * @returns { data: IncomeCategory }
  */
-router.put("/:id", updateIncomeCategory);
+router.put("/:id", Controller.updateIncomeCategory);
 
 /**
  * @route   DELETE  /income_categories/:id
  * @desc    Delete an income category
  * @returns { message: string }
  */
-router.delete("/:id", deleteIncomeCategory);
+router.delete("/:id", Controller.deleteIncomeCategory);
 
 export default router;

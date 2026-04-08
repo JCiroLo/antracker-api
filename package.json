@@ -1,6 +1,6 @@
 {
   "name": "antracker-backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Antracker API built with Express and Supabase",
   "main": "dist/index.js",
   "dependencies": {

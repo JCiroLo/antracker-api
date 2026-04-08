@@ -2,15 +2,14 @@ import { Request, Response } from "express";
 import supabase from "@lib/supabase";
 import { ApiResponse } from "@/types/entities";
 
+const table = supabase.from("users");
+
 /**
  * Get all users
  * @route GET  /users
  */
-export const getAllUsers = async (
-  _req: Request,
-  res: Response,
-): Promise<void> => {
-  const { data, error } = await supabase.from("users").select("*");
+export const getAllUsers = async (_req: Request, res: Response): Promise<void> => {
+  const { data, error } = await table.select("*");
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -26,17 +25,10 @@ export const getAllUsers = async (
  * Get a user by ID
  * @route GET  /users/:id
  */
-export const getUserById = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const getUserById = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
-  const { data, error } = await supabase
-    .from("users")
-    .select("*")
-    .eq("id", id)
-    .single();
+  const { data, error } = await table.select("*").eq("id", id).single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -52,17 +44,10 @@ export const getUserById = async (
  * Create a new user
  * @route POST  /users
  */
-export const createUser = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const createUser = async (req: Request, res: Response): Promise<void> => {
   const body = req.body;
 
-  const { data, error } = await supabase
-    .from("users")
-    .insert(body)
-    .select()
-    .single();
+  const { data, error } = await table.insert(body).select().single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -78,19 +63,11 @@ export const createUser = async (
  * Update an existing user
  * @route PUT  /users/:id
  */
-export const updateUser = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const updateUser = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   const body = req.body;
 
-  const { data, error } = await supabase
-    .from("users")
-    .update(body)
-    .eq("id", id)
-    .select()
-    .single();
+  const { data, error } = await table.update(body).eq("id", id).select().single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -106,13 +83,10 @@ export const updateUser = async (
  * Delete a user
  * @route DELETE  /users/:id
  */
-export const deleteUser = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const deleteUser = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
-  const { error } = await supabase.from("users").delete().eq("id", id);
+  const { error } = await table.delete().eq("id", id);
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -121,7 +95,7 @@ export const deleteUser = async (
   }
 
   const response: ApiResponse<null> = {
-    message: `Registro ${id} eliminado correctamente`,
+    message: `Record ${id} was successfully removed`,
   };
   res.status(200).json(response);
 };

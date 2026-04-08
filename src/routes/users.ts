@@ -1,11 +1,5 @@
 import { Router, type Router as ExpressRouter } from "express";
-import {
-  getAllUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser,
-} from "@controllers/user-controller";
+import * as Controller from "@controllers/users";
 
 const router: ExpressRouter = Router();
 
@@ -14,14 +8,14 @@ const router: ExpressRouter = Router();
  * @desc    Get all users
  * @returns { data: User[] }
  */
-router.get("/", getAllUsers);
+router.get("/", Controller.getAllUsers);
 
 /**
  * @route   GET  /users/:id
  * @desc    Get a user by ID
  * @returns { data: User }
  */
-router.get("/:id", getUserById);
+router.get("/:id", Controller.getUserById);
 
 /**
  * @route   POST  /users
@@ -29,7 +23,7 @@ router.get("/:id", getUserById);
  * @body    { email, full_name, avatar_url?, role }
  * @returns { data: User }
  */
-router.post("/", createUser);
+router.post("/", Controller.createUser);
 
 /**
  * @route   PUT  /users/:id
@@ -37,13 +31,13 @@ router.post("/", createUser);
  * @body    Partial fields of User
  * @returns { data: User }
  */
-router.put("/:id", updateUser);
+router.put("/:id", Controller.updateUser);
 
 /**
  * @route   DELETE  /users/:id
  * @desc    Delete a user
  * @returns { message: string }
  */
-router.delete("/:id", deleteUser);
+router.delete("/:id", Controller.deleteUser);
 
 export default router;

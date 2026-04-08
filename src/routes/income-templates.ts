@@ -1,11 +1,5 @@
 import { Router, type Router as ExpressRouter } from "express";
-import {
-  getAllIncomeTemplates,
-  getIncomeTemplateById,
-  createIncomeTemplate,
-  updateIncomeTemplate,
-  deleteIncomeTemplate,
-} from "@controllers/income-template-controller";
+import * as Controller from "@controllers/income-template";
 
 const router: ExpressRouter = Router();
 
@@ -14,14 +8,14 @@ const router: ExpressRouter = Router();
  * @desc    Get all income templates
  * @returns { data: IncomeTemplate[] }
  */
-router.get("/", getAllIncomeTemplates);
+router.get("/", Controller.getAllIncomeTemplates);
 
 /**
  * @route   GET  /income_templates/:id
  * @desc    Get an income template by ID
  * @returns { data: IncomeTemplate }
  */
-router.get("/:id", getIncomeTemplateById);
+router.get("/:id", Controller.getIncomeTemplateById);
 
 /**
  * @route   POST  /income_templates
@@ -29,7 +23,7 @@ router.get("/:id", getIncomeTemplateById);
  * @body    { name, source, amount, description?, is_recurring }
  * @returns { data: IncomeTemplate }
  */
-router.post("/", createIncomeTemplate);
+router.post("/", Controller.createIncomeTemplate);
 
 /**
  * @route   PUT  /income_templates/:id
@@ -37,13 +31,13 @@ router.post("/", createIncomeTemplate);
  * @body    Partial fields of IncomeTemplate
  * @returns { data: IncomeTemplate }
  */
-router.put("/:id", updateIncomeTemplate);
+router.put("/:id", Controller.updateIncomeTemplate);
 
 /**
  * @route   DELETE  /income_templates/:id
  * @desc    Delete an income template
  * @returns { message: string }
  */
-router.delete("/:id", deleteIncomeTemplate);
+router.delete("/:id", Controller.deleteIncomeTemplate);
 
 export default router;
