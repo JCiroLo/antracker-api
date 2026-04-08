@@ -1,44 +1,49 @@
 import { Router, type Router as ExpressRouter } from "express";
-import { createCrudController } from "../controllers/crud-controller";
+import {
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+} from "@controllers/user-controller";
 
 const router: ExpressRouter = Router();
-const ctrl = createCrudController("users");
 
 /**
- * @route   GET /api/users
+ * @route   GET  /users
  * @desc    Get all users
  * @returns { data: User[] }
  */
-router.get("/", ctrl.getAll);
+router.get("/", getAllUsers);
 
 /**
- * @route   GET /api/users/:id
+ * @route   GET  /users/:id
  * @desc    Get a user by ID
  * @returns { data: User }
  */
-router.get("/:id", ctrl.getById);
+router.get("/:id", getUserById);
 
 /**
- * @route   POST /api/users
+ * @route   POST  /users
  * @desc    Create a new user
  * @body    { email, full_name, avatar_url?, role }
  * @returns { data: User }
  */
-router.post("/", ctrl.create);
+router.post("/", createUser);
 
 /**
- * @route   PUT /api/users/:id
+ * @route   PUT  /users/:id
  * @desc    Update an existing user
  * @body    Partial fields of User
  * @returns { data: User }
  */
-router.put("/:id", ctrl.update);
+router.put("/:id", updateUser);
 
 /**
- * @route   DELETE /api/users/:id
+ * @route   DELETE  /users/:id
  * @desc    Delete a user
  * @returns { message: string }
  */
-router.delete("/:id", ctrl.remove);
+router.delete("/:id", deleteUser);
 
 export default router;
