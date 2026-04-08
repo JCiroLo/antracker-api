@@ -2,15 +2,14 @@ import { Request, Response } from "express";
 import supabase from "@lib/supabase";
 import { ApiResponse } from "@/types/entities";
 
+const table = supabase.from("expense_templates");
+
 /**
  * Get all expense templates
  * @route GET  /expense_templates
  */
-export const getAllExpenseTemplates = async (
-  _req: Request,
-  res: Response,
-): Promise<void> => {
-  const { data, error } = await supabase.from("expense_templates").select("*");
+export const getAllExpenseTemplates = async (_req: Request, res: Response): Promise<void> => {
+  const { data, error } = await table.select("*");
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -26,17 +25,10 @@ export const getAllExpenseTemplates = async (
  * Get an expense template by ID
  * @route GET  /expense_templates/:id
  */
-export const getExpenseTemplateById = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const getExpenseTemplateById = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
-  const { data, error } = await supabase
-    .from("expense_templates")
-    .select("*")
-    .eq("id", id)
-    .single();
+  const { data, error } = await table.select("*").eq("id", id).single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -52,17 +44,10 @@ export const getExpenseTemplateById = async (
  * Create a new expense template
  * @route POST  /expense_templates
  */
-export const createExpenseTemplate = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const createExpenseTemplate = async (req: Request, res: Response): Promise<void> => {
   const body = req.body;
 
-  const { data, error } = await supabase
-    .from("expense_templates")
-    .insert(body)
-    .select()
-    .single();
+  const { data, error } = await table.insert(body).select().single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -78,19 +63,11 @@ export const createExpenseTemplate = async (
  * Update an existing expense template
  * @route PUT  /expense_templates/:id
  */
-export const updateExpenseTemplate = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const updateExpenseTemplate = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   const body = req.body;
 
-  const { data, error } = await supabase
-    .from("expense_templates")
-    .update(body)
-    .eq("id", id)
-    .select()
-    .single();
+  const { data, error } = await table.update(body).eq("id", id).select().single();
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -106,16 +83,10 @@ export const updateExpenseTemplate = async (
  * Delete an expense template
  * @route DELETE  /expense_templates/:id
  */
-export const deleteExpenseTemplate = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+export const deleteExpenseTemplate = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
-  const { error } = await supabase
-    .from("expense_templates")
-    .delete()
-    .eq("id", id);
+  const { error } = await table.delete().eq("id", id);
 
   if (error) {
     const response: ApiResponse<null> = { error: error.message };
@@ -124,7 +95,7 @@ export const deleteExpenseTemplate = async (
   }
 
   const response: ApiResponse<null> = {
-    message: `Registro ${id} eliminado correctamente`,
+    message: `Record ${id} was successfully removed`,
   };
   res.status(200).json(response);
 };

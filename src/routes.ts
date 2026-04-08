@@ -1,4 +1,4 @@
-import { Application } from "express";
+import { Application, Router } from "express";
 import expenseTemplatesRouter from "@routes/expense-templates";
 import expenseRecordsRouter from "@routes/expense-records";
 import expenseCategoriesRouter from "@routes/expense-categories";
@@ -7,12 +7,20 @@ import incomeRecordsRouter from "@routes/income-records";
 import incomeCategoriesRouter from "@routes/income-categories";
 import usersRouter from "@routes/users";
 
+function createV1Router(): Router {
+  const router = Router();
+
+  router.use("/expense-templates", expenseTemplatesRouter);
+  router.use("/expense-categories", expenseCategoriesRouter);
+  router.use("/expense-records", expenseRecordsRouter);
+  router.use("/income-templates", incomeTemplatesRouter);
+  router.use("/income-categories", incomeCategoriesRouter);
+  router.use("/income-records", incomeRecordsRouter);
+  router.use("/users", usersRouter);
+
+  return router;
+}
+
 export function registerRouter(app: Application): void {
-  app.use("/v1/expense-templates", expenseTemplatesRouter);
-  app.use("/v1/expense-categories", expenseCategoriesRouter);
-  app.use("/v1/expense-records", expenseRecordsRouter);
-  app.use("/v1/income-templates", incomeTemplatesRouter);
-  app.use("/v1/income-categories", incomeCategoriesRouter);
-  app.use("/v1/income-records", incomeRecordsRouter);
-  app.use("/v1/users", usersRouter);
+  app.use("/v1", createV1Router());
 }

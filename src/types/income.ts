@@ -1,4 +1,4 @@
-import { FrequencyUnit } from "./expense";
+import type { FrequencyUnit } from "@/types/entities";
 
 export type IncomeTemplate = {
   amount: number;
@@ -21,6 +21,10 @@ export type IncomeTemplate = {
   user_id: string;
 };
 
+export type NewIncomeTemplate = Omit<IncomeTemplate, "id" | "created_at">;
+
+export type PartialNewIncomeTemplate = Partial<NewIncomeTemplate>;
+
 export type IncomeRecord = {
   category_id: string | null;
   created_at: string;
@@ -35,3 +39,7 @@ export type IncomeRecord = {
   paid_at_month?: number;
   paid_at_year?: number;
 };
+
+export type NewIncomeRecord = Omit<IncomeRecord, "id" | "created_at">;
+
+export type PartialNewIncomeRecord = Partial<NewIncomeRecord>;

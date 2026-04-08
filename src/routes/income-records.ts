@@ -1,11 +1,5 @@
 import { Router, type Router as ExpressRouter } from "express";
-import {
-  getAllIncomeRecords,
-  getIncomeRecordById,
-  createIncomeRecord,
-  updateIncomeRecord,
-  deleteIncomeRecord,
-} from "@controllers/income-record-controller";
+import * as Controller from "@controllers/income-record";
 
 const router: ExpressRouter = Router();
 
@@ -14,14 +8,14 @@ const router: ExpressRouter = Router();
  * @desc    Get all income records
  * @returns { data: IncomeRecord[] }
  */
-router.get("/", getAllIncomeRecords);
+router.get("/", Controller.getAllIncomeRecords);
 
 /**
  * @route   GET  /income_records/:id
  * @desc    Get an income record by ID
  * @returns { data: IncomeRecord }
  */
-router.get("/:id", getIncomeRecordById);
+router.get("/:id", Controller.getIncomeRecordById);
 
 /**
  * @route   POST  /income_records
@@ -29,7 +23,7 @@ router.get("/:id", getIncomeRecordById);
  * @body    { template_id?, user_id, name, source, amount, description?, date }
  * @returns { data: IncomeRecord }
  */
-router.post("/", createIncomeRecord);
+router.post("/", Controller.createIncomeRecord);
 
 /**
  * @route   PUT  /income_records/:id
@@ -37,13 +31,13 @@ router.post("/", createIncomeRecord);
  * @body    Partial fields of IncomeRecord
  * @returns { data: IncomeRecord }
  */
-router.put("/:id", updateIncomeRecord);
+router.put("/:id", Controller.updateIncomeRecord);
 
 /**
  * @route   DELETE  /income_records/:id
  * @desc    Delete an income record
  * @returns { message: string }
  */
-router.delete("/:id", deleteIncomeRecord);
+router.delete("/:id", Controller.deleteIncomeRecord);
 
 export default router;

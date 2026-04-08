@@ -1,7 +1,7 @@
+import express, { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import express, { Application, Request, Response, NextFunction } from "express";
-import { registerRouter } from "./routes";
+import { registerRouter } from "@/routes";
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ app.get("/health", (_req: Request, res: Response) => {
 registerRouter(app);
 
 app.use((_req: Request, res: Response) => {
-  res.status(404).json({ error: "Route not found" });
+  res.status(404).json({ error: "Not found" });
 });
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {

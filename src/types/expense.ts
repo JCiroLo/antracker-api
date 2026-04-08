@@ -1,11 +1,4 @@
-export type FrequencyUnit = "days" | "weeks" | "months" | "years";
-
-export type ExpenseCategory = {
-  color: string;
-  id: string;
-  name: string;
-  user_id: string;
-};
+import type { FrequencyUnit } from "@/types/entities";
 
 export type ExpenseTemplate = {
   amount: number;
@@ -28,6 +21,10 @@ export type ExpenseTemplate = {
   user_id: string;
 };
 
+export type NewExpenseTemplate = Omit<ExpenseTemplate, "id" | "created_at">;
+
+export type PartialNewExpenseTemplate = Partial<NewExpenseTemplate>;
+
 export type ExpenseRecord = {
   category_id: string | null;
   created_at: string;
@@ -42,3 +39,7 @@ export type ExpenseRecord = {
   paid_at_month?: number;
   paid_at_year?: number;
 };
+
+export type NewExpenseRecord = Omit<ExpenseRecord, "id" | "created_at">;
+
+export type PartialNewExpenseRecord = Partial<NewExpenseRecord>;
