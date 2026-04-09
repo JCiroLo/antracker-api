@@ -1,5 +1,0 @@
-.env
-.env.development
-dist/
-node_modules/
-.verdent/
