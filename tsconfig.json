@@ -15,11 +15,12 @@
     "sourceMap": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@utils/*": ["./src/utils/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
       "@routes/*": ["./src/routes/*"],
       "@services/*": ["./src/services/*"],
-      "@controllers/*": ["./src/controllers/*"],
-      "@lib/*": ["./src/lib/*"]
+      "@utils/*": ["./src/utils/*"]
     }
   },
   "include": ["src/**/*"],

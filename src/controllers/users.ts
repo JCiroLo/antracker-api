@@ -4,10 +4,6 @@ import { ApiResponse } from "@/types/entities";
 
 const table = supabase.from("users");
 
-/**
- * Get all users
- * @route GET  /users
- */
 export const getAllUsers = async (_req: Request, res: Response): Promise<void> => {
   const { data, error } = await table.select("*");
 
@@ -21,10 +17,6 @@ export const getAllUsers = async (_req: Request, res: Response): Promise<void> =
   res.status(200).json(response);
 };
 
-/**
- * Get a user by ID
- * @route GET  /users/:id
- */
 export const getUserById = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
@@ -40,10 +32,6 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
   res.status(200).json(response);
 };
 
-/**
- * Create a new user
- * @route POST  /users
- */
 export const createUser = async (req: Request, res: Response): Promise<void> => {
   const body = req.body;
 
@@ -59,10 +47,6 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
   res.status(201).json(response);
 };
 
-/**
- * Update an existing user
- * @route PUT  /users/:id
- */
 export const updateUser = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   const body = req.body;
@@ -79,10 +63,6 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
   res.status(200).json(response);
 };
 
-/**
- * Delete a user
- * @route DELETE  /users/:id
- */
 export const deleteUser = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
