@@ -9,4 +9,5 @@ router.post("/", Controller.createCategory);
 router.put("/:id", Controller.updateCategory);
 router.delete("/:id", Controller.deleteCategory);
 
+export const path = "/categories";
 export default router;
