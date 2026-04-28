@@ -1,10 +1,9 @@
-export type ExpenseCategory = {
+export type Category = {
     id: string;
     name: string;
     color: string;
     user_id: string;
     created_at?: string;
 };
-export type NewExpenseCategory = Omit<ExpenseCategory, "id" | "created_at">;
-export type PartialNewExpenseCategory = Partial<NewExpenseCategory>;
+export type NewCategory = Partial<Omit<Category, "id" | "created_at">>;
 //# sourceMappingURL=category.d.ts.map

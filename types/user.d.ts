@@ -3,6 +3,5 @@ export type User = {
     email?: string;
     created_at?: string;
 };
-export type NewUser = Omit<User, "created_at">;
-export type PartialNewUser = Partial<NewUser>;
+export type NewUser = Partial<Omit<User, "created_at">>;
 //# sourceMappingURL=user.d.ts.map
