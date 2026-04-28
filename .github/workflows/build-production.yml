@@ -23,11 +23,6 @@ jobs:
           node-version: 22
           cache: "yarn"
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
@@ -42,7 +37,7 @@ jobs:
           mkdir -p /tmp/build-output
           cp -R dist/* /tmp/build-output/
           cp package.json /tmp/build-output/
-          cp pnpm-lock.yaml /tmp/build-output/
+          cp yarn.lock /tmp/build-output/
 
           git checkout production || git checkout -b production
 
