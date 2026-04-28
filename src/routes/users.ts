@@ -9,4 +9,5 @@ router.post("/", Controller.createUser);
 router.put("/:id", Controller.updateUser);
 router.delete("/:id", Controller.deleteUser);
 
+export const path = "/users";
 export default router;

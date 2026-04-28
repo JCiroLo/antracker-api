@@ -9,4 +9,5 @@ router.post("/", Controller.createTransactionRecord);
 router.put("/:id", Controller.updateTransactionRecord);
 router.delete("/:id", Controller.deleteTransactionRecord);
 
+export const path = "/transaction-records";
 export default router;

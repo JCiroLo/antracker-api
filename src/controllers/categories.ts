@@ -68,6 +68,8 @@ export const deleteCategory = async (req: Request, res: Response): Promise<void>
   }
 
   res.status(200).json({
-    message: `Record ${id} was successfully removed`,
+    error: {
+      message: `Record ${id} was successfully removed`,
+    },
   });
 };

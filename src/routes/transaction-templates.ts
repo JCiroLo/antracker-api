@@ -9,4 +9,5 @@ router.post("/", Controller.createTransactionTemplate);
 router.put("/:id", Controller.updateTransactionTemplate);
 router.delete("/:id", Controller.deleteTransactionTemplate);
 
+export const path = "/transaction-templates";
 export default router;

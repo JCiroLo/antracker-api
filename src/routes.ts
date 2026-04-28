@@ -1,18 +1,18 @@
 import { Application, Router } from "express";
-import categoriesRouter from "@routes/categories";
-import transactionTemplatesRouter from "@routes/transaction-templates";
-import transactionRecordsRouter from "@routes/transaction-records";
-import usersRouter from "@routes/users";
+import categoriesRouter, { path as categoriesPath } from "@routes/categories";
+import transactionTemplatesRouter, { path as transactionTemplatesPath } from "@routes/transaction-templates";
+import transactionRecordsRouter, { path as transactionRecordsPath } from "@routes/transaction-records";
+import usersRouter, { path as usersPath } from "@routes/users";
 
 import { verifyFirebaseToken } from "@middlewares/auth";
 
 function createV1Router(): Router {
   const router = Router();
 
-  router.use("/categories", categoriesRouter);
-  router.use("/transaction-templates", transactionTemplatesRouter);
-  router.use("/transaction-records", transactionRecordsRouter);
-  router.use("/users", usersRouter);
+  router.use(categoriesPath, categoriesRouter);
+  router.use(transactionTemplatesPath, transactionTemplatesRouter);
+  router.use(transactionRecordsPath, transactionRecordsRouter);
+  router.use(usersPath, usersRouter);
 
   return router;
 }

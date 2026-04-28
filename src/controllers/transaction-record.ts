@@ -72,6 +72,8 @@ export const deleteTransactionRecord = async (req: Request, res: Response): Prom
   }
 
   res.status(200).json({
-    message: `Record ${id} was successfully removed`,
+    error: {
+      message: `Record ${id} was successfully removed`,
+    },
   });
 };
