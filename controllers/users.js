@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = exports.updateUser = exports.createUser = exports.getUserById = exports.getAllUsers = void 0;
-const supabase_1 = __importDefault(require("@lib/supabase"));
-const errors_1 = require("@/lib/errors");
+const supabase_1 = __importDefault(require("../lib/supabase"));
+const errors_1 = require("../lib/errors");
 const table = supabase_1.default.from("users");
 const getAllUsers = async (_req, res) => {
     const { data, error } = await table.select("*");

@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = __importDefault(require("@/app"));
-const env_1 = require("@lib/env");
+const app_1 = __importDefault(require("./app"));
+const env_1 = require("./lib/env");
 if (!env_1.app.port) {
     throw new Error("The PORT environment variable is missing from the .env file.");
 }

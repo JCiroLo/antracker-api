@@ -35,11 +35,11 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerRouter = registerRouter;
 const express_1 = require("express");
-const categories_1 = __importStar(require("@routes/categories"));
-const transaction_templates_1 = __importStar(require("@routes/transaction-templates"));
-const transaction_records_1 = __importStar(require("@routes/transaction-records"));
-const users_1 = __importStar(require("@routes/users"));
-const auth_1 = require("@middlewares/auth");
+const categories_1 = __importStar(require("./routes/categories"));
+const transaction_templates_1 = __importStar(require("./routes/transaction-templates"));
+const transaction_records_1 = __importStar(require("./routes/transaction-records"));
+const users_1 = __importStar(require("./routes/users"));
+const auth_1 = require("./middlewares/auth");
 function createV1Router() {
     const router = (0, express_1.Router)();
     router.use(categories_1.path, categories_1.default);
