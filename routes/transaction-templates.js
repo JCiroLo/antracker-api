@@ -35,7 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.path = void 0;
 const express_1 = require("express");
-const Controller = __importStar(require("../controllers/transaction-template"));
+const Controller = __importStar(require("@controllers/transaction-template"));
 const router = (0, express_1.Router)();
 router.get("/", Controller.getAllTransactionTemplates);
 router.get("/:id", Controller.getTransactionTemplateById);

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.migrate = migrate;
-const supabase_1 = __importDefault(require("../lib/supabase"));
+const supabase_1 = __importDefault(require("@lib/supabase"));
 async function migrate() {
     console.log("🚀 Starting migration...");
     const { data: expenseTemplates } = await supabase_1.default.from("expense_templates").select("*");

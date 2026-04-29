@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTransactionRecord = exports.updateTransactionRecord = exports.createTransactionRecord = exports.getTransactionRecordById = exports.getAllTransactionRecords = void 0;
-const supabase_1 = __importDefault(require("../lib/supabase"));
+const supabase_1 = __importDefault(require("@lib/supabase"));
 const table = supabase_1.default.from("transaction_records");
 const getAllTransactionRecords = async (req, res) => {
     const userId = req.user.uid;

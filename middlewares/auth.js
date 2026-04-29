@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyFirebaseToken = void 0;
-const firebase_1 = __importDefault(require("../lib/firebase"));
-const errors_1 = require("../lib/errors");
+const firebase_1 = __importDefault(require("@lib/firebase"));
+const errors_1 = require("@lib/errors");
 const verifyFirebaseToken = async (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {

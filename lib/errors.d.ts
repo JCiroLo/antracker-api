@@ -1,4 +1,4 @@
-import type { ApiError } from "../types/entities";
+import type { ApiError } from "@/types/entities";
 export declare const AuthError: ApiError;
 export declare const BadRequestError: ApiError;
 export declare const InternalServerError: ApiError;
