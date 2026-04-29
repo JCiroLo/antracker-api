@@ -34,10 +34,10 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTransactionTemplate = exports.updateTransactionTemplate = exports.createTransactionTemplate = exports.getTransactionTemplateById = exports.getAllTransactionTemplates = void 0;
-const supabase_1 = __importStar(require("@lib/supabase"));
-const env_1 = require("@/lib/env");
-const errors_1 = require("@/lib/errors");
-const object_utils_1 = require("@/utils/object-utils");
+const supabase_1 = __importStar(require("../lib/supabase"));
+const env_1 = require("../lib/env");
+const errors_1 = require("../lib/errors");
+const object_utils_1 = require("../utils/object-utils");
 const table = supabase_1.default.from("transaction_templates");
 const getAllTransactionTemplates = async (req, res) => {
     const userId = req.user.uid;

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getCategoryById = exports.getAllCategories = void 0;
-const supabase_1 = __importDefault(require("@lib/supabase"));
+const supabase_1 = __importDefault(require("../lib/supabase"));
 const table = supabase_1.default.from("categories");
 const getAllCategories = async (req, res) => {
     const userId = req.user.uid;
