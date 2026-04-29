@@ -1,5 +1,5 @@
 import { Router, type Router as ExpressRouter } from "express";
-import * as Controller from "@controllers/transaction-record";
+import * as Controller from "../controllers/transaction-record";
 
 const router: ExpressRouter = Router();
 

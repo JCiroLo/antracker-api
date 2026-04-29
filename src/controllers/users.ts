@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import supabase from "@lib/supabase";
-import { ApiResponse } from "@/types/entities";
-import { InternalServerError, NotFoundError } from "@/lib/errors";
+import supabase from "../lib/supabase";
+import { InternalServerError, NotFoundError } from "../lib/errors";
 
 const table = supabase.from("users");
 

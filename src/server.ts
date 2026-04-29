@@ -1,5 +1,5 @@
-import app from "@/app";
-import { app as appEnv } from "@lib/env";
+import app from "./app";
+import { app as appEnv } from "./lib/env";
 
 if (!appEnv.port) {
   throw new Error("The PORT environment variable is missing from the .env file.");

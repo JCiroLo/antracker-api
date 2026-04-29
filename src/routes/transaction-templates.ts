@@ -1,5 +1,5 @@
 import { Router, type Router as ExpressRouter } from "express";
-import * as Controller from "@controllers/transaction-template";
+import * as Controller from "../controllers/transaction-template";
 
 const router: ExpressRouter = Router();
 

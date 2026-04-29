@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import supabase, { rpc } from "@lib/supabase";
-import { app as appEnv } from "@/lib/env";
-import { BadRequestError, NotFoundError } from "@/lib/errors";
-import { deleteFields } from "@/utils/object-utils";
+import supabase, { rpc } from "../lib/supabase";
+import { app as appEnv } from "../lib/env";
+import { BadRequestError, NotFoundError } from "../lib/errors";
+import { deleteFields } from "../utils/object-utils";
 
 const table = supabase.from("transaction_templates");
 

@@ -1,6 +1,6 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import { supabase as supabaseEnv } from "@lib/env";
-import type { SupabaseRPC } from "@/types/entities";
+import { supabase as supabaseEnv } from "./env";
+import type { SupabaseRPC } from "../types/entities";
 
 if (!supabaseEnv.url || !supabaseEnv.key) {
   throw new Error("The SUPABASE_URL or SUPABASE_KEY environment variables are missing from the .env file.");

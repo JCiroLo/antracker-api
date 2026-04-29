@@ -1,4 +1,4 @@
-import type { ApiError } from "@/types/entities";
+import type { ApiError } from "../types/entities";
 
 export const AuthError: ApiError = {
   code: 401,

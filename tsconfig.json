@@ -12,16 +12,7 @@
     "resolveJsonModule": true,
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true,
-    "paths": {
-      "@/*": ["./src/*"],
-      "@controllers/*": ["./src/controllers/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@middlewares/*": ["./src/middlewares/*"],
-      "@routes/*": ["./src/routes/*"],
-      "@services/*": ["./src/services/*"],
-      "@utils/*": ["./src/utils/*"]
-    }
+    "sourceMap": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

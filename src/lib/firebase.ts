@@ -1,5 +1,5 @@
 import admin from "firebase-admin";
-import { firebase as firebaseEnv } from "@lib/env";
+import { firebase as firebaseEnv } from "./env";
 
 admin.initializeApp({
   credential: admin.credential.cert(firebaseEnv),

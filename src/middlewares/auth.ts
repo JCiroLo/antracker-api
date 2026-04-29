@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import admin from "@lib/firebase";
-import { AuthError } from "@lib/errors";
+import admin from "../lib/firebase";
+import { AuthError } from "../lib/errors";
 
 export const verifyFirebaseToken = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
